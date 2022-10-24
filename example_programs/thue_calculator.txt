@@ -1,0 +1,247 @@
+
+# get input
+@::=:::
+
+# convert numbers
+0::=<WW>
+1::=<W.W>
+2::=<W..W>
+3::=<W...W>
+4::=<W....W>
+5::=<W.....W>
+6::=<W......W>
+7::=<W.......W>
+8::=<W........W>
+9::=<W.........W>
+
+# confirm number separation from symbols
+W>+::=>W]+
+W>-::=>W]-
+W>*::=>W]*
+W>/::=>W]/
+W>^::=>W]^
+W>(::=>W]*(
+W>)::=>W])
+W>}::=>W]}
+W><::=><
++<W::=+[W<
+-<W::=-[W<
+*<W::=*[W<
+/<W::=/[W<
+^<W::=^[W<
+(<W::=([W<
+)<W::=)*[W<
+{<W::={[W<
+><W::=><
+
+# mark each digits order of magnitude (we multiply 1 by 10 n times, where n is the amount of dots)
+>W]::=>ac<>bW]
+c<::=A<B<c
+c.::=A.B.c
+c>::=A>B>c
+cb::=d
+>aA<B::=A<B>a
+>aA.B::=A.B>a
+>aA>B::=A>B>a
+.A<B::=A<B.
+.A.B::=A.B.
+.A>B::=A>B.
+<A<B::=A<B<
+<A.B::=A.B<
+<A>B::=A>B<
+>A<B::=>ac<C
+CA.B::=.C
+CA>B::=.>b
+[WA<B::=[W
+WA.B::=W
+WA>B::=W
+
+# setup the multiplication of each digit by its designated order of magnitude
+>dW]::=dW]*[X<.>X])
+>dad::=dW]*[X<.>X]+
+.dW]::=dW]*[X<..........>X]
+a<dW]::=adW]
+>adW]::=ad>X]
+.ad::=ad.
+<ad::=ad[X<
+[Wad::=(
+
+# setup for mathematical operations in brackets
+>X])::=>X]Ss)
+>X]}::=>X]Ss}
+
+# go through (stop at parentheses) and exponentiate, until reaching
+# start parentheses "(" or start curly brackets "}"
+>X]S::=S>X]
+.S::=S.
+..........S::=S..........
+[X<S::=S[X<
+>X]+S::=S>X]+
+>X]-S::=S>X]-
+>X]*S::=S>X]*
+>X]/S::=S>X]/
+# exponentiation with 0^0 error detection
+<>X]^S[X<>::=<```>
+``::=~ERROR - ZERO TO THE POWER OF ZERO
+.>X]^S[X<.::=.>X]^[X<n.
+.>X]^S[X<>::=.>X]^[X<n>
+<>X]^S[X<.::=<>X]^[X<n.
+n.::=.n
+n>X]::=N>X]*[X<.>X]s)S
+.N::=N.
+..........N::=N..........
+>X]^[X<N::=/R^
+./R::=/R.
+........../R::=/R..........
+[X</R::=([X<R/
+R/.::=.R/
+R/..........::=..........R/
+R/^::=^o
+^o>X]::=r>X]
+.r::=r
+..........r::=r
+[X<r>X]*::=S
+^o.::=^O^
+.^O::=^O.
+..........^O::=^O..........
+[X<^O::=[X<Qp^
+p^q.::=.p^
+p^q.q.q.q.q.q.q.q.q.q.::=..........p^
+p^.::=^p.q.
+.^p.::=^p.q.
+..........^p.::=^p.q.q.q.q.q.q.q.q.q.q.
+Q^p.::=.Qp^
+p^^::=^P^
+.^P::=^Pq.
+..........^P::=^Pq.q.q.q.q.q.q.q.q.q.
+Q^P::=>X]*[X<o
+oq.::=.o
+oq.q.q.q.q.q.q.q.q.q.::=..........o
+o^::=^o
+# setup multiplication and division
+(S[X<::=(eE[X<
+{S[X<::={eE[X<
+
+# go through (stop at parentheses) and multiply and divide, until reaching
+# end parentheses ")" or end curly brackets "}"
+E[X<::=[X<E
+E.::=.E
+E..........::=..........E
+E>X]::=>X]E
+E+[X<::=+[X<E
+E-[X<::=-[X<E
+# multiplication
+>X]E*[X<::=fg
+.f::=fF
+..........f::=fFFFFFFFFFF
+g.::=Gg
+g..........::=GGGGGGGGGGg
+FG::=GF.
+.G::=G.
+..........G::=G..........
+F.::=.F
+F..........::=..........F
+<f::=<h
+hG::=h
+h.::=.h
+h..........::=..........h
+Fg>::=g>
+hg>X]::=>X]E
+# division with division by zero detection
+>X]E/[X<>::=\\\>
+\\::=~ERROR - DIVISION BY ZERO
+>X]E/[X<.::=/E/.
+E/.::=.E/
+E/..........::=..........E/
+E/>X]::=/ikK.>X]
+.I/i::=/i.
+.I.I.I.I.I.I.I.I.I.I/i::=/i..........
+./i::=.I.i/
+.i/.::=.I.i/
+.i/..........::=.I.I.I.I.I.I.I.I.I.I.i/
+.i/k::=/ik.
+//i::=j
+.j.::=j
+..........j..........::=j
+jk::=/E/
+E/K::=/ikK.
+<j.::=<J
+J.::=J
+J..........::=J
+Jk::=J
+JK.::=E
+# come back from multiplication and division and then prepare for the next math operation
+Es)::=Hs)
+Es}::=Hs}
+>X]H::=H>X]
+.H::=H.
+..........H::=H..........
+[X<H::=H[X<
++H::=H+
+-H::=H-
+eH::=lL
+
+# same as multiplication and division, but at the end remove ")"
+L[X<::=[X<L
+L.::=.L
+L..........::=..........L
+L>X]::=>X]L
+# addition
+>X]L+[X<::=L
+# subtraction
+>X]L-[X<::=L-
+.L-.::=L-
+..........L-..........::=L-
+L->X]::=>X]L
+Ls)::=M
+Ls}::=Ms}
+>X]M::=M>X]
+.M::=M.
+..........M::=M..........
+[X<M::=M[X<
+(lM::=
+{lM::={m
+m[X<::=m
+m>X]::=m
+m.::=!m
+!::=~*
+{ms}::=
+
+# W - number is not fully processed and separated from symbols
+# X - number has been transformed into addition of multiplications of a value with powers of ten
+
+# a, b - protect the order of magnitude of a digit to be copied
+# c - copies the order of magnitude which is then transferred to the next digit with 1 greater order
+# d - signifies that the order of magnitude has been copied to the next digit on the left
+# A, B - protect the transfer of the order of magnitude
+
+# C - signify that this is the place where the copy of the order of magnitude should be transferred to
+# s - signify that S has been sent to exponentiate
+# S - go and exponentiate all the terms from right to left, at the end turn to eH
+# nNoOpPqQr - do exponentiation and ensure that it is done, turn into S
+# R - ensure that we add "(" to the left of the term we are exponentiating
+# e - signify that an E has been sent to multiply and divide
+# E - go and multiply and divide the terms from left to right, at the end turn into an H
+# H - go back to the left to e and turn into iI
+# fFgGh - do multiplication and ensure that it is done, turn into E
+# iIjJkK - do division and ensure that it is done, turn into E
+# lL - (do addition and subtraction), at the end L turns into M
+# M - go back to l
+# m - print out all dots
+
+# to add - when all is done in curly brackets make a converter that prints the number
+# to add - make moving possible to be faster (E.......... -> ..........E)
+# supported symbol: 0-9, (), +, * and ONLY NON-NEGATIVE numbers and intermediate results and results
+# supported: automatic addition of * when number next to parentheses [ex.:  2(3+5) => 2*(3+5)]
+#		or [ex.: (3+5)2 => (3+5)*2],
+#		but parentheses and parenthese DON'T WORK, so (2+3)(5-1) won't function properly
+# supported: when there is an exponent of an exponent and there are no parentheses, the upper one
+#		is calculated first [ex.: 5^3^2 = 5^(3^2)] and so on
+# supported: division by zero spits out an error
+# supported: zero to the power of zero spits out an error
+{(25+6)1+4*2*0+8/2}
+{7*2+(7+3(5-2))/4*2}
+{12^2}
+{(2^2)^3}
+::=
+{@}

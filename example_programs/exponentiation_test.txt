@@ -1,0 +1,27 @@
+# exponentiation with 0^0 error detection
+<>X]^S[X<>::=<```>
+``::=~ERROR - ZERO TO THE POWER OF ZERO
+.>X]^S[X<.::=.>X]^[X<n.
+.>X]^S[X<>::=.>X]^[X<n>
+<>X]^S[X<.::=<>X]^[X<n.
+n.::=.n
+n>X]::=N>X]*[X<.>X]
+.N::=N.
+>X]^[X<N::=^o
+^o>X]::=r>X]
+.r::=r
+[X<r>X]*::=S
+^o.::=^O^
+.^O::=^O.
+[X<^O::=[X<Qp^
+p^q.::=.p^
+p^.::=^p.q.
+.^p.::=^p.q.
+Q^p.::=.Qp^
+p^^::=^P^
+.^P::=^Pq.
+Q^P::=>X]*[X<o
+oq.::=.o
+o^::=^o
+::=
+{[X<>X]^S[X<>X]}
