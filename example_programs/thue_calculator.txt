@@ -231,7 +231,8 @@ m.::=!m
 
 # to add - when all is done in curly brackets make a converter that prints the number
 # featured: faster possible processing speed [ex.: E.......... -> ..........E]
-# supported symbol: 0-9, (), +, * and ONLY NON-NEGATIVE numbers and intermediate results and results
+# supported symbols: 0-9, (), +, -, *, /, ^
+# supported: ONLY NON-NEGATIVE (numbers, intermediate results and results)
 # supported: automatic addition of * when number next to parentheses [ex.:  2(3+5) => 2*(3+5)]
 #		or [ex.: (3+5)2 => (3+5)*2],
 #		but parentheses and parenthese DON'T WORK, so (2+3)(5-1) won't function properly
