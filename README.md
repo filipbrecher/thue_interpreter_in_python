@@ -1,0 +1,1 @@
+# thue_interpreter_in_python
