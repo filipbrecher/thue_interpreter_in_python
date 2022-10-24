@@ -200,12 +200,35 @@ Ls}::=Ms}
 ..........M::=M..........
 [X<M::=M[X<
 (lM::=
-{lM::={m
-m[X<::=m
-m>X]::=m
-m.::=!m
-!::=~*
-{ms}::=
+{lM::={lm
+
+# output the number in numerals
+lm[X<::=l[X<t..........u
+.u.::=u
+........u........::=u
+.........u.........::=u
+..........u..........::=u
+tu::=.t..........u
+.u>::=.U..........>
+.U.::=U
+tU::=T>X][X<
+.T::=T.
+..........T::T..........
+<T.::=<t..........u.
+[X<T>X]::=V
+
+V[X<::=Vv[X<
+v[X<>X]::=~0
+v[X<.>X]::=~1
+v[X<..>X]::=~2
+v[X<...>X]::=~3
+v[X<....>X]::=~4
+v[X<.....>X]::=~5
+v[X<......>X]::=~6
+v[X<.......>X]::=~7
+v[X<........>X]::=~8
+v[X<.........>X]::=~9
+
 
 # W - number is not fully processed and separated from symbols
 # X - number has been transformed into addition of multiplications of a value with powers of ten
@@ -219,17 +242,24 @@ m.::=!m
 # s - signify that S has been sent to exponentiate
 # S - go and exponentiate all the terms from right to left, at the end turn to eH
 # nNoOpPqQr - do exponentiation and ensure that it is done, turn into S
+
 # R - ensure that we add "(" to the left of the term we are exponentiating
 # e - signify that an E has been sent to multiply and divide
 # E - go and multiply and divide the terms from left to right, at the end turn into an H
 # H - go back to the left to e and turn into iI
 # fFgGh - do multiplication and ensure that it is done, turn into E
 # iIjJkK - do division and ensure that it is done, turn into E
-# lL - (do addition and subtraction), at the end L turns into M
-# M - go back to l
-# m - print out all dots
 
-# to add - when all is done in curly brackets make a converter that prints the number
+# lL - (do addition and subtraction), at the end L turns into M
+# M - go back to l and turn {lM into lm
+# m - signifies that every calculation has been done
+
+# tTuU - divide the final amount by 10, the remainder gets placed to the right, the rest goes recurrently
+# vV - print out the number in numerals
+
+
+# to add - remainder division -> %
+# featured: when all is done in curly brackets, it outputs the result in numerical value
 # featured: faster possible processing speed [ex.: E.......... -> ..........E]
 # supported symbols: 0-9, (), +, -, *, /, ^
 # supported: ONLY NON-NEGATIVE (numbers, intermediate results and results)
