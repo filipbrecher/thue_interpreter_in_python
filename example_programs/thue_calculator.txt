@@ -71,7 +71,7 @@ a<dW]::=adW]
 >X]}::=>X]Ss}
 
 # go through (stop at parentheses) and exponentiate, until reaching
-# start parentheses "(" or start curly brackets "}"
+# start parentheses "(" or start curly brackets "{"
 >X]S::=S>X]
 .S::=S.
 ..........S::=S..........
@@ -181,18 +181,20 @@ Es}::=Hs}
 -H::=H-
 eH::=lL
 
-# same as multiplication and division, but at the end remove ")"
+# same as multiplication and division, but at the end remove ")" and it is addition and subtraction
 L[X<::=[X<L
 L.::=.L
 L..........::=..........L
 L>X]::=>X]L
 # addition
 >X]L+[X<::=L
-# subtraction
+# subtraction with negative result detection
 >X]L-[X<::=L-
 .L-.::=L-
 ..........L-..........::=L-
 L->X]::=>X]L
+<L-.::=<"""
+""::=~ERROR - SUBTRACTION RESULT IS NEGATIVE
 Ls)::=M
 Ls}::=Ms}
 >X]M::=M>X]
@@ -256,16 +258,21 @@ v[X<.........>X]::=~9
 
 # tTuU - divide the final amount by 10, the remainder gets placed to the right, the rest goes recurrently
 # vV - print out the number in numerals
+# `` - zero to the power of zero error
+# \\ - division by zero error
+# "" - subtraction result is negative error
 
 
 # to add - remainder division -> %
+# to add - parentheses by parentheses multiplication -> (5+2)(3+8) => (5+2)*(3+8)
+# maybe to add - factorial, square root -> !, "symbol for square root or smth"
 # featured: when all is done in curly brackets, it outputs the result in numerical value
 # featured: faster possible processing speed [ex.: E.......... -> ..........E]
 # supported symbols: 0-9, (), +, -, *, /, ^
 # supported: ONLY NON-NEGATIVE (numbers, intermediate results and results)
 # supported: automatic addition of * when number next to parentheses [ex.:  2(3+5) => 2*(3+5)]
 #		or [ex.: (3+5)2 => (3+5)*2],
-#		but parentheses and parenthese DON'T WORK, so (2+3)(5-1) won't function properly
+#		but parentheses and parentheses DON'T WORK, so (2+3)(5-1) won't function properly
 # supported: when there is an exponent of an exponent and there are no parentheses, the upper one
 #		is calculated first [ex.: 5^3^2 = 5^(3^2)] and so on
 # supported: division by zero spits out an error
