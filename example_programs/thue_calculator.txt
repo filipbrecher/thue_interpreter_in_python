@@ -56,15 +56,25 @@ CA>B::=.>b
 WA.B::=W
 WA>B::=W
 
-# setup the multiplication of each digit by its designated order of magnitude
->dW]::=dW]*[X<.>X])
->dad::=dW]*[X<.>X]+
-.dW]::=dW]*[X<..........>X]
-a<dW]::=adW]
->adW]::=ad>X]
-.ad::=ad.
-<ad::=ad[X<
-[Wad::=(
+# multiply each digit by its designated order of magnitude
+>dW]::=y>DW]
+>d<::=y>D<
+>a<y>DW]::=/y>X])
+>a<y>D<::=/y>X]+[X<
+[X</y::=[X<
+>D</y::=>D<
+[W</y::=([X<
+>a<y.::=y>a<
+./y::=/y.
+........../y::=/y..........
+.y::=y.
+..........y::=y..........
+[X<y::=[X<Y
+D<y::=D<Y
+[W<y::=[W<Y
+Y.::=..........Y
+Y..........::=....................................................................................................Y
+Y>a<::=>a<y
 
 # setup for mathematical operations in brackets
 >X])::=>X]Ss)
@@ -239,6 +249,7 @@ v[X<.........>X]::=~9
 # c - copies the order of magnitude which is then transferred to the next digit with 1 greater order
 # d - signifies that the order of magnitude has been copied to the next digit on the left
 # A, B - protect the transfer of the order of magnitude
+# D, yY - handle the multiplication of each digit by 10 to the power of its order of magnitude
 
 # C - signify that this is the place where the copy of the order of magnitude should be transferred to
 # s - signify that S has been sent to exponentiate
